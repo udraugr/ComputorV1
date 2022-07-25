@@ -12,8 +12,7 @@ NAME :=	computor
 
 # ------------  FLAGS  ------------------------------------------------------- #
 
-FLAGS := -Wall -Wextra -Werror
-
+FLAGS := -Wall -Wextra -Werror -std=gnu++2a
 SOURCES := main.cpp \
 			Parser.cpp \
 			Lexema.cpp \

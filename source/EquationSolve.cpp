@@ -1,6 +1,6 @@
 #include "Equation.hpp"
 
-std::pair<ComplexNumber, ComplexNumber>        Equation::Solve(){
+std::pair<ComplexNumber, ComplexNumber>        Equation::Solve(bool showDebug){
     double coefs[3] = {0.l, 0.l, 0.l};
     long long int maxDegree = -1;
     for (std::size_t i = 0; i < coefs_.size(); ++i) {
@@ -17,6 +17,10 @@ std::pair<ComplexNumber, ComplexNumber>        Equation::Solve(){
     }
 
     std::pair<ComplexNumber, ComplexNumber>     ans;
+
+    if (showDebug){
+        std::cout << "Final coefficents: a = [" << coefs[2] << "] b = [" << coefs[1] << "] c = [" << coefs[0] << "]" << std::endl;
+    }
 
     if (maxDegree == -1){
         throw std::logic_error(ERR_DEGENERATED);

@@ -64,9 +64,9 @@ int main(int argc, char **argv){
             if (equations.size() != 1){
                 std::cerr << "Incorrectly reduced inequalities!" << std::endl;
             } else {
-                auto ans = equations[0].Solve();
+                auto ans = equations[0].Solve(showDebug);
                 if (ans.first == ans.second) {
-                    std::cout << "Two identical roots: " << ans.first << std::endl;
+                    std::cout << "Unique root: " << ans.first << std::endl;
                 } else {
                     std::cout << "First root: " << ans.first << std::endl;
                     std::cout << "Second root: " << ans.second << std::endl;

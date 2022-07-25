@@ -52,13 +52,13 @@ std::pair<ComplexNumber, ComplexNumber>     complexSqrt(ComplexNumber c1){
     } else if (c1.a_ < 0. && isEqual(c1.b_, 0)) {
         angle = M_PI;
     }
-    ComplexNumber sqrt1 = ComplexNumber(length * cos(angle / 2.), length * sin(angle / 2.));
-    ComplexNumber sqrt2 = ComplexNumber(length * cos((angle + 2. * M_PI) / 2.), length * sin((angle + 2. * M_PI) / 2.));
+    ComplexNumber sqrt1 = ComplexNumber(std::sqrt(length) * cos(angle / 2.), std::sqrt(length) * sin(angle / 2.));
+    ComplexNumber sqrt2 = ComplexNumber(std::sqrt(length) * cos((angle + 2. * M_PI) / 2.), std::sqrt(length) * sin((angle + 2. * M_PI) / 2.));
     return std::make_pair(sqrt1, sqrt2);
 }
 
 std::ostream& operator << (std::ostream &os, const ComplexNumber &c) {
-    os << c.a_;
+    os << (isEqual(c.a_, 0.) ? std::abs(c.a_) : c.a_);
     if (!isEqual(c.b_, 0.)) {
         os << (c.b_ > 0. ?  " + " : " - ") << std::abs(c.b_) << " * i";
     }

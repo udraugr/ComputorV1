@@ -2,6 +2,13 @@
 
 bool isEqual(double a, double b) { return std::abs(a - b) < POSS_EPS; }
 
+long long int findMaxDegree(const std::vector<std::pair<double, double>> &vec) {
+    long long int maxDegree = -1;
+    for (const auto &e : vec)
+        maxDegree = std::max(maxDegree, static_cast<long long int>(e.first));
+    return maxDegree;
+}
+
 static void add(double &a, double b) { a += b; }
 
 static void subt(double &a, double b) { a -= b; }
@@ -50,7 +57,7 @@ Equation operator + (Equation q1, Equation q2)
 
     shrinkEquation(result);
 
-    result.varName_ = std::max(q1.varName_, q2.varName_);
+    result.varName_ = findMaxDegree(result.coefs_) > 0 ? std::max(q1.varName_, q2.varName_) : 0;
     return result;
 }
 
@@ -71,7 +78,7 @@ Equation operator - (Equation q1, Equation q2)
 
     shrinkEquation(result);
     
-    result.varName_ = std::max(q1.varName_, q2.varName_);
+    result.varName_ = findMaxDegree(result.coefs_) > 0 ? std::max(q1.varName_, q2.varName_) : 0;
     return result;
 }
 
@@ -94,7 +101,7 @@ Equation operator * (Equation q1, Equation q2)
 
     shrinkEquation(result);
 
-    result.varName_ = std::max(q1.varName_, q2.varName_);
+    result.varName_ = findMaxDegree(result.coefs_) > 0 ? std::max(q1.varName_, q2.varName_) : 0;
     return result;
 }
 
@@ -140,7 +147,7 @@ Equation operator / (Equation q1, Equation q2)
     
     std::vector<std::pair<double, double>>  ans;
     ans.push_back(std::make_pair(0., props));
-    Equation result(ans, std::max(q1.varName_, q2.varName_));
+    Equation result(ans, 0);
 
     shrinkEquation(result);
 

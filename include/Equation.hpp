@@ -47,7 +47,7 @@ struct Equation{
     Equation(std::vector<std::pair<double,double>> &coefs, char varName) : coefs_(coefs) , varName_(varName) {};
     Equation() = default;
     
-    std::pair<ComplexNumber, ComplexNumber>         Solve(void);
+    std::pair<ComplexNumber, ComplexNumber>         Solve(bool showDebug);
 
     std::vector<std::pair<double,double>>           coefs_;
     char                                            varName_ = 0;
@@ -61,4 +61,5 @@ Equation operator / (Equation e1, Equation e2);
 
 
 bool            isEqual(double a, double b);
+long long int   findMaxDegree(const std::vector<std::pair<double, double>> &vec);
 

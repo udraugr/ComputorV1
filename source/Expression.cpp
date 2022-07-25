@@ -104,7 +104,7 @@ Equation                Expression::exprDegree(std::size_t &index, bool wasSign)
             ++saveIndex;
             Equation e = exprUnar(saveIndex);
             if (e.coefs_.size() == 1 && e.coefs_[0].second + POSS_EPS > 0. && isEqual(e.coefs_[0].first, 0.)){
-                double x = e.coefs_[0].second + POSS_EPS;
+                double x = e.coefs_[0].second;
                 if (isEqual(e.coefs_[0].second, 0.)){
                     std::vector<std::pair<double, double>>  tmp;
                     tmp.push_back(std::make_pair(0., 1.));
@@ -123,7 +123,6 @@ Equation                Expression::exprDegree(std::size_t &index, bool wasSign)
                     throw std::logic_error(ss.str());
                 }
             } else {
-                std::cout << "inside" << std::endl;
                 std::stringstream ss;
                 ss << ERR_DIFF_DEGR << e;
                 throw std::logic_error(ss.str());
